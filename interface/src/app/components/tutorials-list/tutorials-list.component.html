@@ -1,0 +1,64 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        style="text-align: center; background-color: rgb(86, 188, 223);"
+        type="text"
+        class="form-control"
+        placeholder="Buscar por nombre"
+        [(ngModel)]="title"
+      />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="input-group-append">
+        <button
+          style="text-align: center; background-color: rgb(86, 188, 223);"
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" style="background-color: lightblue;">
+    <h4>Lista</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item" style="background-color: lightblue;"
+        *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(tutorial, i)"
+      >
+        {{ tutorial.object }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentTutorial">
+      <br>
+      <div>
+        <label><strong>Nombre:</strong></label> {{ currentTutorial.object }}
+      </div>
+      <div>
+        <label><strong>Cafés:</strong></label>
+        {{ currentTutorial.description }}
+      </div>
+      <button style="color:black; background-color:#FF8C00;"class="badge badge-warning" (click)="updatecafes()">
+        Añadir 1 café
+      </button>
+      &nbsp;
+      <button style="color:black; background-color:#73ff00;"class="badge badge-warning" (click)="paycafes()">
+        Pagar cafés
+      </button>
+      &nbsp;
+      <button style="color:black; background-color:red;" class="badge badge-danger mr-2" (click)="deleteTutorial()">
+        borrar persona
+      </button>
+    </div>
+    <div *ngIf="!currentTutorial">
+      <br />
+      <p>Clicka en tu nombre para ver y añadir cafés</p>
+    </div>
+  </div>
+</div>

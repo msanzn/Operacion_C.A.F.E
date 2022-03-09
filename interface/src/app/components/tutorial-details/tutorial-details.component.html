@@ -1,0 +1,46 @@
+<div style="width: 400px; margin: auto;">
+  <div *ngIf="currentTutorial" class="edit-form">
+    <center><h4>Objects</h4>
+    <form>
+      <div class="form-group">
+        <label for="object">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="object"
+          [(ngModel)]="currentTutorial.nombre"
+          name="obkect"
+          style="text-align:center;"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Cafés</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentTutorial.cafes"
+          name="description"
+          style="text-align:center;"
+        />
+      </div>
+    </form>
+    <br>
+    <button style="color:black; background-color:red;" class="badge badge-danger mr-2" (click)="deleteTutorial()">
+      Erase object
+    </button>
+    &nbsp;
+    <button type="submit" style="color:black; background-color:green;" class="badge badge-success" (click)="updateTutorial()">
+      Update
+    </button>
+    <button type="submit" style="color:black; background-color:green;" class="badge badge-success" (click)="Light_object()">
+      Light up
+    </button>
+    </center>
+  </div>
+
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+</div>
