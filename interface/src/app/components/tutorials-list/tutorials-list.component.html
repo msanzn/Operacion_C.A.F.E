@@ -1,28 +1,10 @@
 <div class="list row">
   <div class="col-md-8">
     <div class="input-group mb-3">
-      <input
-        style="text-align: center; background-color: rgb(86, 188, 223);"
-        type="text"
-        class="form-control"
-        placeholder="Buscar por nombre"
-        [(ngModel)]="title"
-      />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <div class="input-group-append">
-        <button
-          style="text-align: center; background-color: rgb(86, 188, 223);"
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="searchTitle()"
-        >
-          Buscar
-        </button>
-      </div>
+      <h3>Capsulas restantes {{ capsulas_restantes}}</h3>
     </div>
   </div>
   <div class="col-md-6" style="background-color: lightblue;">
-    <h4>Lista</h4>
     <ul class="list-group">
       <li
         class="list-group-item" style="background-color: lightblue;"

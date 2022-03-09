@@ -14,12 +14,21 @@ export class TutorialsListComponent implements OnInit {
   currentIndex = -1;
   title = '';
   receive_var;
-
+  capsulas_restantes;
   constructor(
     private tutorialService: TutorialService,
     private http: HttpClient
   ) {}
   ngOnInit(): void {
+    this.http.get<any>('http://192.168.10.105:8008/cafe_num').subscribe({
+        next: data => {
+            console.log(data);
+            this.capsulas_restantes= data;
+        },
+        error: error => {
+            console.error('There was an error!', error);
+        }
+    })
     this.retrieveTutorials();
   }
   retrieveTutorials(): void {
@@ -59,6 +68,7 @@ export class TutorialsListComponent implements OnInit {
     var c = Number(this.currentTutorial.description);
     console.log(typeof c)
     c=c + 1;
+    this.capsulas_restantes=this.capsulas_restantes -1;
     console.log(c)
     this.currentTutorial.description=c.toString()
     console.log(this.currentTutorial.description)
@@ -70,6 +80,15 @@ export class TutorialsListComponent implements OnInit {
         error => {
           console.log(error);
         });
+    this.http.post<any>('http://192.168.10.105:8008/',"").subscribe({
+      next: data => {
+          console.log(data);
+          this.capsulas_restantes= data;
+      },
+      error: error => {
+          console.error('There was an error!', error);
+      }
+    })
   }
 
   paycafes(): void {
@@ -97,6 +116,7 @@ export class TutorialsListComponent implements OnInit {
         });
   }
   searchTitle(): void {
+    console.log(this.title)
     this.tutorialService.findByTitle(this.title).subscribe(
       (data) => {
         this.tutorials = data;
